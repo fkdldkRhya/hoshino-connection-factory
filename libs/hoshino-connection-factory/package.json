@@ -19,6 +19,10 @@
   "publishConfig": {
     "access": "restricted"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drvaluecorp/hoshino-nestjs-libraries.git"
+  },
   "dependencies": {
     "@nestjs-cls/transactional": "^2.6.1",
     "@nestjs-cls/transactional-adapter-prisma": "^1.2.19",

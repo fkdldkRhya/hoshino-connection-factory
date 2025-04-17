@@ -15,11 +15,17 @@
 
 </div>
 
-## 프로젝트 소개
+## What is Hoshino CF (Connection-Factory) ???
 
-본 프로젝트는 Nest Js기반 백엔드에서 컨트롤러를 분석하여 npm에 Api를 함수형테로 올리는 프로젝트 입니다.
+해당 라이브러리는 NestJS 전용 멀티 테넌시 구현을 위한 Connection 풀 관리 및 트렌젝션 관리 기능을 포함하고 있습니다.
+MySQL, MongoDB 2가지 데이터베이스를 지원하고 중첩 트렌젝션을 통한 다중 데이터베이스에 대한 트렌젝션을 수행합니다. (단, MongoDB의 경우 레플리케이션이 되어 있어야 합니다.)
 
-This project is a functional terrorism project that analyzes controllers in a Nest JS-based backend and provides APIs to npm.
+The library includes connection pool management and transmission management capabilities for NestJS-only multi-tenancy implementations.
+It supports two databases, MySQL and MongoDB, and performs the projection on multiple databases with overlapping transmissions (but MongoDB requires replication)
+
+예제 데이터는 `exam-nestjs.zip` 파일을 참고해주세요.
+
+For example data, refer to the file `exam-nestjs.zip`.
 
 ## 시작 가이드
 
@@ -491,47 +497,6 @@ export class AppController {
 3. **Nested Transactions**: Supports calling transactional methods from within other transactional methods.
 4. **Automatic Rollback**: If an exception occurs, all transactions are rolled back.
 5. **Request Scoping**: Tenant information can be extracted from the request context.
-
-#### Multi-tenancy Support
-
-For multi-tenancy scenarios:
-
-```typescript
-import { Injectable } from '@nestjs/common';
-import { ConnectionService } from '@drvaluecrop/hoshino-connection-factory';
-import { PrismaClient } from './generated/client';
-
-@Injectable()
-export class TenantService {
-  constructor(private readonly connectionService: ConnectionService) {}
-
-  async createTenantConnection(tenantId: string) {
-    // Create a tenant-specific connection
-    await this.connectionService.createConnection(`tenant-${tenantId}`, {
-      type: 'mysql',
-      url: 'mysql://user:password@localhost:3306/mydb',
-      multiTenancy: true,
-      tenantId,
-      clientFactory: async () => {
-        const client = new PrismaClient();
-        await client.$connect();
-        return client;
-      },
-    });
-
-    return this.getTenantClient(tenantId);
-  }
-
-  getTenantClient(tenantId: string) {
-    return this.connectionService.getConnection(`tenant-${tenantId}`).getClient();
-  }
-}
-```
-
-The library will automatically append the tenant ID to the database name:
-
-- MySQL: `mydb` → `mydb_tenant1`
-- MongoDB: `mydb` → `mydb_tenant1`
 
 #### Tenant Module and Interfaces
 
