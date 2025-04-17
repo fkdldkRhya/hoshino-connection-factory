@@ -1,0 +1,39 @@
+{
+  "name": "@drvaluecrop/hoshino-connection-factory",
+  "description": "Hoshino Connection Factory (Tenant Connection Manager)",
+  "version": "0.0.1",
+  "author": "fkdldkrhya <fkdldkrhya@hanyang.ac.kr>",
+  "keywords": [
+    "nestjs",
+    "tenant",
+    "connection",
+    "connection-pool",
+    "factory",
+    "prisma",
+    "multi-tenancy"
+  ],
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "dependencies": {
+    "@nestjs-cls/transactional": "^2.6.1",
+    "@nestjs-cls/transactional-adapter-prisma": "^1.2.19",
+    "@nestjs/common": "^10.0.2",
+    "@nestjs/core": "^10.0.2",
+    "@nestjs/platform-express": "^10.0.2",
+    "@prisma/client": "^6.6.0",
+    "nestjs-cls": "^5.4.2",
+    "prisma": "^6.6.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.0"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "prisma": "^5.4.0"
+  }
+}

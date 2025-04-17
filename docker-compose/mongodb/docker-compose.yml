@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  mongodb-primary:
+    image: zcube/bitnami-compat-mongodb
+    container_name: mongodb-primary
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data/mongodb-primary:/bitnami/mongodb
+    environment:
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_ROOT_PASSWORD=root
+      - MONGODB_REPLICA_SET_NAME=rs0
+      - MONGODB_REPLICA_SET_KEY=yourReplicaSetKey
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-primary
+    networks:
+      - mongo-net
+
+  mongodb-secondary:
+    image: zcube/bitnami-compat-mongodb
+    container_name: mongodb-secondary
+    restart: unless-stopped
+    depends_on:
+      - mongodb-primary
+    ports:
+      - '27018:27017'
+    volumes:
+      - ./data/mongodb-secondary:/bitnami/mongodb
+    environment:
+      - MONGODB_REPLICA_SET_MODE=secondary
+      - MONGODB_REPLICA_SET_KEY=yourReplicaSetKey
+      - MONGODB_INITIAL_PRIMARY_HOST=mongodb-primary
+      - MONGODB_REPLICA_SET_NAME=rs0
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=root
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-secondary
+    networks:
+      - mongo-net
+
+  mongodb-arbiter:
+    image: zcube/bitnami-compat-mongodb
+    container_name: mongodb-arbiter
+    restart: unless-stopped
+    depends_on:
+      - mongodb-primary
+    ports:
+      - '27019:27017'
+    volumes:
+      - ./data/mongodb-arbiter:/bitnami/mongodb
+    environment:
+      - MONGODB_REPLICA_SET_MODE=arbiter
+      - MONGODB_REPLICA_SET_KEY=yourReplicaSetKey
+      - MONGODB_INITIAL_PRIMARY_HOST=mongodb-primary
+      - MONGODB_REPLICA_SET_NAME=rs0
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=root
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-arbiter
+    networks:
+      - mongo-net
+
+networks:
+  mongo-net:
+    driver: bridge
