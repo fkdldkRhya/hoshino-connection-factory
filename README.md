@@ -1,8 +1,38 @@
-# HoshinoNestjsLibraries
+# HoshinoNestjsLibraries/hoshino-connection-factory
+
+## Hoshino CF (Connection-Factory)
+
+<div align="center" text-align="center">
+
+> **(주) 디알밸류** <br/> **개발기간: 2025.04.14 ~ 현재**
+
+## 개발자 소개
+
+|                                              최시훈                                              |                                              강 준                                               |
+| :----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
+|                  <img width="160px" src="https://github.com/fkdldkrhya.png" />                   |                    <img width="160px" src="https://github.com/leenuu.png" />                     |
+| [@fkdldkrhya](https://github.com/fkdldkrhya) <br> 한양대학교 ERICA 3학년<br>(주) 디알밸류 연구원 | [@leenuu](https://github.com/leenuu) <br> 건국대학교 글로컬 캠퍼스 2학년<br>(주) 디알밸류 연구원 |
+
+</div>
+
+## 프로젝트 소개
+
+본 프로젝트는 Nest Js기반 백엔드에서 컨트롤러를 분석하여 npm에 Api를 함수형테로 올리는 프로젝트 입니다.
+
+This project is a functional terrorism project that analyzes controllers in a Nest JS-based backend and provides APIs to npm.
+
+## 시작 가이드
+
+### Requirements
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
 A collection of NestJS libraries to facilitate common development patterns.
+
+For building and running the application you need:
+
+- [Node.js 22.12.0](https://nodejs.org/)
+- [Pnpm 9.15.1](https://pnpm.io/ko/)
 
 ## Libraries
 
