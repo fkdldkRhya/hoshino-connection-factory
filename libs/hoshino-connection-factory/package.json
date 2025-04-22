@@ -1,7 +1,7 @@
 {
   "name": "@drvaluecrop/hoshino-connection-factory",
   "description": "Hoshino Connection Factory (Tenant Connection Manager)",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "fkdldkrhya <fkdldkrhya@hanyang.ac.kr>",
   "keywords": [
     "nestjs",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/drvaluecorp/hoshino-nestjs-libraries.git"
+    "url": "https://github.com/fkdldkRhya/hoshino-connection-factory.git"
   },
   "dependencies": {
     "@nestjs-cls/transactional": "^2.6.1",
