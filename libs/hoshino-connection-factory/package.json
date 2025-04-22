@@ -1,7 +1,7 @@
 {
   "name": "@drvaluecrop/hoshino-connection-factory",
   "description": "Hoshino Connection Factory (Tenant Connection Manager)",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "fkdldkrhya <fkdldkrhya@hanyang.ac.kr>",
   "keywords": [
     "nestjs",

@@ -1,4 +1,4 @@
-import { WelcomeMessageService } from './lib/init/welcome-message.func';
+import { WelcomeMessageService } from './lib/welcome/welcome-message.func';
 
 WelcomeMessageService();
 
