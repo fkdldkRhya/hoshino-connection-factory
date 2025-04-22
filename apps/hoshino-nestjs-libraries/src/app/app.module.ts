@@ -6,7 +6,6 @@ import { ClsPluginTransactional } from '@nestjs-cls/transactional';
 import { CustomTenantPrismaService } from './tenant-service/custom-tenant-prisma-client.service';
 import { CustomTenantModule } from './tenant-service/custom-tenant.module';
 import { MyTransactionalAdapterPrisma } from './tenant-service/custom-tenant-prisma-adapter.adapter';
-
 @Module({
   imports: [
     // Import module that provides HoshinoConnectionFactoryService

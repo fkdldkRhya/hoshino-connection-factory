@@ -1,24 +1,31 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { TenantPrismaClient } from './tenant-service/custom-tenant-prisma-client.service';
 import { TenantType } from '@prisma/client/master_mysql_db/index.js';
 import { PrismaClient as PrismaClientMysql } from '@prisma/client/tenant_mysql_db/index.js';
 import { PrismaClient as PrismaClientMongo } from '@prisma/client/tenant_mongo_db/index.js';
 import { Transactional, TransactionHost } from '@nestjs-cls/transactional';
 import { MyTransactionalAdapterPrisma } from './tenant-service/custom-tenant-prisma-adapter.adapter';
+import {
+  getServiceToken,
+  HoshinoConnectionFactoryService,
+} from '@hoshino-nestjs-libraries/hoshino-connection-factory';
+import { PrismaClient as PrismaClientMaster } from '@prisma/client/master_mysql_db/index.js';
 
 @Injectable()
 export class AppService {
   private readonly logger = new Logger(AppService.name);
 
   constructor(
+    @Inject(getServiceToken('master'))
+    private readonly masterDbConnection: HoshinoConnectionFactoryService<PrismaClientMaster>,
+
     private readonly tenantPrismaService: TransactionHost<MyTransactionalAdapterPrisma>
   ) {}
 
   @Transactional()
   async getData(): Promise<{ message: string }> {
     try {
-      const tenantClients = (await this.tenantPrismaService
-        .tx);
+      const tenantClients = await this.tenantPrismaService.tx;
       this.logger.log(`Processing ${tenantClients.length} tenant clients`);
 
       // 원자적 트랜잭션을 보장하기 위해 모든 테넌트 작업을 배치로 준비
@@ -63,7 +70,7 @@ export class AppService {
       await this.createUser();
 
       // 4. 테스트를 위한 오류 발생 - 모든 트랜잭션이 롤백되어야 함
-      throw new Error('test');
+      // throw new Error('test');
 
       // 5. 성공적으로 완료
       this.logger.log('All operations completed successfully');

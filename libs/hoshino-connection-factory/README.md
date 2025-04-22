@@ -532,22 +532,6 @@ import { MyTransactionAdapter } from './my-transaction-adapter';
 export class AppModule {}
 ```
 
-The TenantModule also supports async configuration:
-
-```typescript
-TenantModule.forRootAsync({
-  tenantResolverFactory: {
-    useFactory: (configService) => new MyTenantResolver(configService),
-    inject: [ConfigService],
-  },
-  tenantServiceFactory: {
-    useFactory: (configService) => new MyTenantService(configService),
-    inject: [ConfigService],
-  },
-  // ... other options
-}),
-```
-
 Key tenant interfaces provided by the library:
 
 1. **TenantExtractorStrategy**: Extract tenant identifier from requests

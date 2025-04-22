@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { HoshinoConnectionFactoryService } from './hoshino-connection-factory.service';

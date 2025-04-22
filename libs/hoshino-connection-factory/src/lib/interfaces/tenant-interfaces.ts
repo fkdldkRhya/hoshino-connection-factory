@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HoshinoConnectionFactoryService } from '../hoshino-connection-factory.service';
 
@@ -74,4 +75,40 @@ export interface TenantTransactionOptions {
   maxRetries?: number;
   isolationLevel?: string;
   [key: string]: any;
+}
+
+/**
+ * Interface for checking tenant accessibility
+ * Users can implement their own logic for validating tenant connections
+ */
+export interface TenantAccessibilityChecker<T = any> {
+  /**
+   * Check if all tenant connections are accessible
+   * @returns Promise resolving to an array of accessibility check results
+   */
+  checkAllTenantsAccessibility(): Promise<TenantAccessibilityResult[]>;
+
+  /**
+   * Get all available tenant connection information
+   * @returns Promise resolving to an array of tenant connection information
+   */
+  getAllTenantConnectionInfo(): Promise<TenantConnectionInfo[]>;
+
+  /**
+   * Create a temporary connection to a tenant's database
+   * @param connectionInfo The tenant connection information
+   * @returns A promise that resolves when the connection is successfully established and closed
+   */
+  testTenantConnection(connectionInfo: TenantConnectionInfo): Promise<boolean>;
+}
+
+/**
+ * Interface for tenant accessibility check results
+ */
+export interface TenantAccessibilityResult {
+  tenantCode: string;
+  tenantIdentifier: string;
+  tenantType: string;
+  accessible: boolean;
+  error?: string;
 }

@@ -1,3 +1,7 @@
+import { WelcomeMessageService } from './lib/init/welcome-message.func';
+
+WelcomeMessageService();
+
 export * from './lib/hoshino-connection-factory.module';
 export * from './lib/hoshino-connection-factory.service';
 export * from './lib/hoshino-connection-factory-pool.service';
@@ -10,3 +14,6 @@ export * from './lib/tenant/base-tenant-client.service';
 export * from './lib/tenant/base-tenant-transaction.adapter';
 export * from './lib/tenant/default-tenant-extractor.strategy';
 export * from './lib/tenant/tenant.module';
+
+// Export tenant accessibility checker
+export * from './lib/tenant/base-tenant-accessibility.service';
