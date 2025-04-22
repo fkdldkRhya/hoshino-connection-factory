@@ -40,14 +40,12 @@ const createMasterClient = async () => {
     CustomTenantPrismaService,
     CustomTenantExtractorStrategy,
     CustomTenantResolverStrategy,
-    // Register the tenant accessibility service
     CustomTenantAccessibilityService,
   ],
   exports: [
     CustomTenantPrismaService,
     CustomTenantExtractorStrategy,
     HoshinoConnectionFactoryModule,
-    // Export the accessibility services for use in other modules
     CustomTenantAccessibilityService,
   ],
 })

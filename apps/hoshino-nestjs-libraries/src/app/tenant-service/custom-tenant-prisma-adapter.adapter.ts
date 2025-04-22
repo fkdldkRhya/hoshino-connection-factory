@@ -50,6 +50,7 @@ export class MyTransactionalAdapterPrisma extends BaseTenantTransactionAdapter<
         }`,
         error instanceof Error ? error.stack : undefined
       );
+
       throw error;
     }
   }
